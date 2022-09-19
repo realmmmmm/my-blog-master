@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  delay-server:
+    depends_on:
+      - service_mysql
+    container_name: my-site
+    image: winterchen/my-site
+    ports:
+      - "8089:8089"
+    volumes:
+      - "./log:/log"
+    environment:
+      SPRING_DATASOURCE_DRUID_URL: jdbc:mysql://mysql:3306/lu_tale?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      SPRING_DATASOURCE_DRUID_USERNAME: root
+      SPRING_DATASOURCE_DRUID_PASSWORD: root
+      QINIU_ACCESSKEY: ""
+      QINIU_SERECTKEY: ""
+      QINIU_BUCKET: ""
+      QINIU_CDN_URL: ""
+
+  # mysql
+  service_mysql:
+    image: mysql:5.7
+    container_name: container_mysql
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: 'root'
+      MYSQL_PASS: 'root'
+    volumes:
+      - ./mysql/data/:/var/lib/mysql    # 挂载数据目录
+      - ./mysql/logs/:/var/log/mysql     # 挂载日志
+      - /etc/localtime:/etc/localtime  # 配置与系统时间一致
+    command: [
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci',
+        '--default-authentication-plugin=mysql_native_password'
+    ]
+    ports:
+      - "3306:3306"
+    privileged: true   # 配置文件授权
+    restart: always   #开机自启
+
+
+
