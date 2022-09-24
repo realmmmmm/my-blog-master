@@ -7,14 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="my-site" />
-        <module name="my-site-master" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="my-site" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="my-site" options="-parameters" />
-      <module name="my-site-master" options="-parameters" />
     </option>
   </component>
 </project>
