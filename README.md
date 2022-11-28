@@ -13,8 +13,3 @@ My Blog是由Docker+SpringBoot2.0+Mybatis+thymeleaf等技术实现的个人网�
 
 
 
-**登录页：**
-![登录页](http://img.winterchen.com/tqad8k3tisi01qjtrv47k5nso4.png)
-**后台首页：**
-![文章列表页](http://img.winterchen.com/eqeqeqeqe.png)
-
